@@ -8,9 +8,7 @@ use App\Models\perfil;
 
 class PerfilController extends Controller
 {
-    //
-
-
+    
     public function registrar(Request $reg){
         $perfil=new perfil();
         $perfil->nombre_perfil="contador";
@@ -23,6 +21,31 @@ class PerfilController extends Controller
     function consultarTodos(Request $req){
         $perfil=new perfil();
         return $perfil::all();
+    }
+
+    function consultarPerfilId(Request $reg,$id){
+        $perfil=new perfil();
+        return $perfil::find($id);
+    }
+
+    function consultarPerfilNombre(Request $req,$nombre){
+        $perfil= new perfil();
+        return $perfil::where("nombre_perfil",$nombre)->get();
+    }
+
+    function eliminarPerfil(Request $req,$id){
+
+        return perfil::where("id_perfil",$id)->delete();
+
+    }
+
+    function actualizarPerfil(Request $req,$id){
+        $perfil=perfil::find($id);
+        $perfil->nombre_perfil="Web Master xxx";
+        $perfil->estado_perfil=1;
+        $perfil->descripcion_perfil="-----";
+        $perfil->save();
+        return  $perfil->id_perfil;
     }
 
 

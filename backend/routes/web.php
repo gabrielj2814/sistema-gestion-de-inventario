@@ -33,8 +33,11 @@ Route::group(["prefix" => "/configuracion"], function() {
     // grupo perfil
     Route::group(['prefix' => '/perfil'], function () {
         Route::get('/registrar', [App\Http\Controllers\PerfilController::class,"registrar"]);
-        Route::get("/consultar-todos",[\App\Http\Controllers\PerfilController::class,"consultarTodos"]);
-        
+        Route::get("/consultar/todos",[\App\Http\Controllers\PerfilController::class,"consultarTodos"]);
+        Route::get("/consultar/id/{id}",[\App\Http\Controllers\PerfilController::class,"consultarPerfilId"]);
+        Route::get("/consultar/nombre/{nombre}",[App\Http\Controllers\PerfilController::class,"consultarPerfilNombre"]);
+        Route::get("/eliminar/{id}",[App\Http\Controllers\PerfilController::class,"eliminarPerfil"]);
+        Route::get("/actualizar/{id}",[App\Http\Controllers\PerfilController::class,"actualizarPerfil"]);
     });
     // grupo trabajador 
 });
