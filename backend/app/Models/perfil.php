@@ -12,4 +12,9 @@ class perfil extends Model
     protected $keyType="integer";
 
 
+    function modulos(){
+        return $this->hasMany(modulo::class,"id_perfil");
+    }
+
+
 }

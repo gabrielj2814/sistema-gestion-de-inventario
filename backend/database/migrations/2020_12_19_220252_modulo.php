@@ -17,13 +17,10 @@ class Modulo extends Migration
             $table->bigIncrements("id_modulo");
             $table->string("modulo",250)->nullable();
             $table->string("sub_modulo",250)->nullable();
+            $table->string("estado_modulo",1);
             $table->unsignedBigInteger("id_perfil");
             $table->foreign("id_perfil")->references("id_perfil")->on("perfil")->cascadeOnDelete()->cascadeOnUpdate();  
-            $table->timestamps();          // $table->foreignId("id_perfil")
-            // ->constrained("perfil")
-            // ->cascadeOnUpdate()
-            // ->cascadeOnDelete();
-            // $table->foreign("id_perfil")->references("perfil")->on("id_perfil");
+            $table->timestamps();
         });
     }
 

@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class modulo extends Model
 {
-    use HasFactory;
+    // use HasFactory;
+
+    protected $table="modulo";
+    protected $primaryKey="id_modulo";
+    protected $typeKey="integer";
+
+    function perfil(){
+        return $this->belongsTo(perfil::class,"id_perfil");
+    }
+
 }
