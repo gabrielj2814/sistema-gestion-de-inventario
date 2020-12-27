@@ -9,7 +9,7 @@ class modulo extends Controller
 {
     //
 
-    function registrarModulo($perfil,$moduloP,$subModulo,$estadoModulo){
+    public function registrarModulo($perfil,$moduloP,$subModulo,$estadoModulo){
         $modulo=new ModelsModulo();
         $modulo->modulo=$moduloP;
         $modulo->sub_modulo=$subModulo;
@@ -18,6 +18,10 @@ class modulo extends Controller
         $modulo->save();
         return ($modulo->id_modulo!==null)?true:false;
 
+    }
+
+    public function eliminarModulos($idPerfil){
+        ModelsModulo::where("id_perfil",$idPerfil)->delete();
     }
 
 }
