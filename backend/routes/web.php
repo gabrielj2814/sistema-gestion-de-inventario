@@ -41,9 +41,16 @@ Route::group(["prefix" => "/configuracion"], function() {
     });
     // grupo tipo personal 
     Route::group(['prefix' => '/tipo-personal'], function () {
-        
         Route::get("/registrar",[App\Http\Controllers\tipoPersonalController::class,"registrar"]);
         Route::get("consultar/todos",[App\Http\Controllers\tipoPersonalController::class,"consultarTodos"]);
+        Route::get("/consultar/{id}",[App\Http\Controllers\tipoPersonalController::class,"consultar"]);
+        Route::get("/consultar/nombre/{nombre}",[App\Http\Controllers\tipoPersonalController::class,"consultarNombre"]);
+        Route::get("/eliminar/{id}",[App\Http\Controllers\tipoPersonalController::class,"eliminar"]);
+        Route::get("/actualizar/{id}",[App\Http\Controllers\tipoPersonalController::class,"actualizar"]);
+
+    });
+    // grupo trabajador
+    Route::group(["prefix" => "/trabajador"], function () {
 
     });
 });
