@@ -14,9 +14,7 @@ class PerfilController extends Controller
         $perfil->nombre_perfil=$req["perfil"]["nombre_perfil"];
         $perfil->estado_perfil=$req["perfil"]["estado_perfil"];
         $perfil->descripcion_perfil=$req["perfil"]["descripcion_perfil"];
-        $perfil->save();
-
-        if($perfil->id_perfil!==null){
+        if($perfil->save()){
             for($contador=0;$contador<sizeof($req["perfil"]["array_modulo_p"]);$contador++){
                 $moduloP=$req["perfil"]["array_modulo_p"][$contador];
                 $moduloSub=$req["perfil"]["array_modulo_sub"][$contador];
@@ -24,13 +22,16 @@ class PerfilController extends Controller
                 $moduloController=new modulo();
                 $moduloController->registrarModulo($perfil,$moduloP,$moduloSub,$estadoModulo);
             }
-        }
+            return ["msj" => "registro completado" ,"estado" => true];
 
+        }
+        else{
+            return ["msj" => "error al registrar" ,"estado" => false];
+        }
         // return "hola estoy registrando con el controlador perfil -> ".$perfil->id_perfil;
-        return $req["perfil"];
     }
 
-    function consultarTodos(Request $req){
+    public function consultarTodos(Request $req){
         $perfil=new perfil();
         // return $perfil::all();
         $listaPerfil=$perfil::all();
@@ -40,7 +41,7 @@ class PerfilController extends Controller
         return $listaPerfil;
     }
 
-    function consultarPerfilId(Request $req,$id){
+    public function consultarPerfilId(Request $req,$id){
         $perfil=new perfil();
         // return $perfil::find($id)->modulos;
         $perfilConsultado=$perfil::find($id);
@@ -48,7 +49,7 @@ class PerfilController extends Controller
         return $perfilConsultado;
     }
 
-    function consultarPerfilNombre(Request $req,$nombre){
+    public function consultarPerfilNombre(Request $req,$nombre){
         $perfil= new perfil();
         // return $perfil::where("nombre_perfil",$nombre)->get();
         $perfilConsultado=$perfil::where("nombre_perfil",$nombre)->get();
@@ -56,21 +57,20 @@ class PerfilController extends Controller
         return $perfilConsultado;
     }
 
-    function eliminarPerfil(Request $req,$id){
+    public function eliminarPerfil(Request $req,$id){
         return perfil::where("id_perfil",$id)->delete();
     }
 
-    function actualizarPerfil(Request $req,$id){
+    public function actualizarPerfil(Request $req,$id){
         $perfil=perfil::find($id);
         $perfil->nombre_perfil=$req["perfil"]["nombre_perfil"];
         $perfil->estado_perfil=$req["perfil"]["estado_perfil"];
         $perfil->descripcion_perfil=$req["perfil"]["descripcion_perfil"];
-        $perfil->save();
+        if($perfil->save()){
 
-        $modulo=new modulo;
-        $modulo->eliminarModulos($perfil->id_perfil);
+            $modulo=new modulo;
+            $modulo->eliminarModulos($perfil->id_perfil);
 
-        if($perfil->id_perfil!==null){
             for($contador=0;$contador<sizeof($req["perfil"]["array_modulo_p"]);$contador++){
                 $moduloP=$req["perfil"]["array_modulo_p"][$contador];
                 $moduloSub=$req["perfil"]["array_modulo_sub"][$contador];
@@ -78,8 +78,12 @@ class PerfilController extends Controller
                 $moduloController=new modulo();
                 $moduloController->registrarModulo($perfil,$moduloP,$moduloSub,$estadoModulo);
             }
+        return ["msj" => "registro completado" , "estado" => true];
+
         }
-        return  $perfil->id_perfil;
+        else{
+            return ["msj" => "error al actualizar" , "estado" => false];
+        }
     }
 
 
