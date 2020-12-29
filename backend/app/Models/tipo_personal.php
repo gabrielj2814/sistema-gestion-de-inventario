@@ -11,7 +11,7 @@ class tipo_personal extends Model
 
     protected $table="tipo_personal";
     protected $primaryKey="id_tipo_personal";
-    protected $typeKey="integer";
+    protected $keyType="integer";
 
     
 

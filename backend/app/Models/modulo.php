@@ -11,7 +11,7 @@ class modulo extends Model
 
     protected $table="modulo";
     protected $primaryKey="id_modulo";
-    protected $typeKey="integer";
+    protected $keyType="integer";
 
     function perfil(){
         return $this->belongsTo(perfil::class,"id_perfil");
