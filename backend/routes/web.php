@@ -51,6 +51,7 @@ Route::group(["prefix" => "/configuracion"], function() {
     });
     // grupo trabajador
     Route::group(["prefix" => "/trabajador"], function () {
+        Route::get("/registrar",[App\Http\Controllers\TrabajadorController::class,"registrar"]);
 
     });
 });

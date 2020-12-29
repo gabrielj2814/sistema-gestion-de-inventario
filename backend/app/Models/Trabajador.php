@@ -10,6 +10,15 @@ class Trabajador extends Model
     use HasFactory;
     protected $table="trabajador";
     protected $primaryKey="cedula_trabajador";
-    protected $incrementing=false;
+    public $incrementing=false;
     protected $keyType="string";
+
+
+    public function tipo_personal(){
+        return $this->belongsTo(tipo_personal::class,"tipo_personal");
+    }
+
+    public function perfil(){
+        return $this->belongsTo(perfil::class,"id_perfil");
+    }
 }

@@ -20,11 +20,11 @@ class Trabajador extends Migration
             $table->string("apellido_2_trabajador",150)->nullable();
             $table->string("telefono_trabajador",11)->nullable();
             $table->string("correo_trabajador",250)->nullable();
-            $table->integer("pregunta_1");
-            $table->integer("pregunta_2");
-            $table->string("respuesta_1",300);
-            $table->string("respuesta_2",300);
-            $table->string("clave",255);
+            $table->integer("pregunta_1")->nullable();
+            $table->integer("pregunta_2")->nullable();
+            $table->string("respuesta_1",300)->nullable();
+            $table->string("respuesta_2",300)->nullable();
+            $table->string("clave",255)->nullable();
             $table->date("fecha_nacimiento");
             $table->date("fecha_ingreso");
             $table->integer("sexo_trabajador");
