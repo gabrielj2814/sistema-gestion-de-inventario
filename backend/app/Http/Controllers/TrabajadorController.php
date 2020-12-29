@@ -18,6 +18,7 @@ class TrabajadorController extends Controller
             $trabajador->apellido_1_trabajador=$req["trabajador"]["apellido_1_trabajador"];
             $trabajador->apellido_2_trabajador=$req["trabajador"]["apellido_2_trabajador"];
             $trabajador->telefono_trabajador=$req["trabajador"]["telefono_trabajador"];
+            $trabajador->correo_trabajador=$req["trabajador"]["correo_trabajador"];
             $trabajador->pregunta_1=0;
             $trabajador->pregunta_2=0;
             $trabajador->respuesta_1="";
@@ -49,6 +50,31 @@ class TrabajadorController extends Controller
             ];
         }
         
+    }
+
+    public function consultarTodos(Request $req){
+        $listaTrabajadores= Trabajador::all();
+
+        if(!empty($listaTrabajadores)){
+
+            for($contador=0;$contador<sizeof($listaTrabajadores);$contador++){
+                $listaTrabajadores[$contador]->tipo_personal;
+                $listaTrabajadores[$contador]->perfil;
+            }
+            return [
+                "msj" => "consulta completada",
+                "estado" => true,
+                "datos" => $listaTrabajadores
+            ];
+
+        }
+        else{
+            return [
+                "msj" => "error al consultar",
+                "estado" => false,
+                "datos" => []
+            ];
+        }
     }
 
 

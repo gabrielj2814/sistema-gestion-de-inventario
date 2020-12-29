@@ -15,7 +15,7 @@ class Trabajador extends Model
 
 
     public function tipo_personal(){
-        return $this->belongsTo(tipo_personal::class,"tipo_personal");
+        return $this->belongsTo(tipo_personal::class,"id_tipo_personal");
     }
 
     public function perfil(){
