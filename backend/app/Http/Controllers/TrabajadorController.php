@@ -181,13 +181,76 @@ class TrabajadorController extends Controller
 
     }
 
-    public function activarCuenta(){
+    public function activarCuenta(Request $req){
+        $trabajador= Trabajador::find($req["trabajador"]["cedula_trabajador"]);
+        if($trabajador!==null){
+            $trabajador->pregunta_1=$req["trabajador"]["pregunta_1"];
+            $trabajador->pregunta_2=$req["trabajador"]["pregunta_2"];
+            $trabajador->respuesta_1=$req["trabajador"]["respuesta_1"];
+            $trabajador->respuesta_2=$req["trabajador"]["respuesta_2"];
+            $trabajador->clave= bcrypt($req["trabajador"]["clave"]);
+            if($trabajador->save()){
+
+                return [
+                    "msj" => "registro completado",
+                    "estado" => true
+                ];
+
+            }
+            else{
+                return [
+                    "msj" => "error al registrar el trabajador",
+                    "estado" => false
+                ];
+            }
+
+        }
+        else{
+            return [
+                "msj" => "error al registrar, no fue encontrado el trabajador",
+                "estado" => false
+            ];
+        }
+
 
     }
 
-    public function recuperarCuenta(){
+    public function recuperarCuenta(Request $req){
+        $trabajador= Trabajador::find($req["trabajador"]["cedula_trabajador"]);
+        if($trabajador!==null){
+            $trabajador->clave= bcrypt($req["trabajador"]["clave_nueva"]);
+            if($trabajador->save()){
+
+                return [
+                    "msj" => "cuenta recuperada",
+                    "estado" => true
+                ];
+
+            }
+            else{
+                return [
+                    "msj" => "error al recuperar la cuenta",
+                    "estado" => false
+                ];
+            }
+        }
+        else{
+            return [
+                "msj" => "error al recuperar la cuenta, no fue encontrado el trabajador",
+                "estado" => false
+            ];
+        }
+    }
+
+    public function iniciarSesion(Request $req){
 
     }
+
+    public function destruirSesion(Request $req){
+        
+    }
+
+
 
     // public function login(){
 

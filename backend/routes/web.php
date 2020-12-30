@@ -57,6 +57,8 @@ Route::group(["prefix" => "/configuracion"], function() {
         Route::get("/consultar/nombre/{nombre}",[App\Http\Controllers\TrabajadorController::class,"consultarNombre"]);
         Route::get("/actualizar/{id}",[App\Http\Controllers\TrabajadorController::class,"actualizar"]);
         Route::get("/eliminar/{id}",[App\Http\Controllers\TrabajadorController::class,"eliminar"]);
+        Route::get("/activar-cuenta",[App\Http\Controllers\TrabajadorController::class,"activarCuenta"]);
+        Route::get("/recuperar-cuenta",[App\Http\Controllers\TrabajadorController::class,"recuperarCuenta"]);
 
     });
 });
