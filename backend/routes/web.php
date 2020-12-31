@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers;
+use App\Http\Middleware\autenticacion;
+
 // use App\Http\Controllers\PerfilController;
 
 // use App\Http\Controllers;
@@ -52,7 +54,7 @@ Route::group(["prefix" => "/configuracion"], function() {
     // grupo trabajador
     Route::group(["prefix" => "/trabajador"], function () {
         Route::get("/registrar",[App\Http\Controllers\TrabajadorController::class,"registrar"]);
-        Route::get("/consultar/todos",[App\Http\Controllers\TrabajadorController::class,"consultarTodos"]);
+        Route::get("/consultar/todos",[App\Http\Controllers\TrabajadorController::class,"consultarTodos"])->middleware("validarToken");
         Route::get("/consultar/{id}",[App\Http\Controllers\TrabajadorController::class,"consultarId"]);
         Route::get("/consultar/nombre/{nombre}",[App\Http\Controllers\TrabajadorController::class,"consultarNombre"]);
         Route::get("/actualizar/{id}",[App\Http\Controllers\TrabajadorController::class,"actualizar"]);
@@ -61,5 +63,16 @@ Route::group(["prefix" => "/configuracion"], function() {
         Route::get("/recuperar-cuenta",[App\Http\Controllers\TrabajadorController::class,"recuperarCuenta"]);
 
     });
+});
+
+Route::group(["prefix" => "/login"], function(){
+
+    Route::get("/iniciar",[App\Http\Controllers\TrabajadorController::class,"iniciarSesion"]);
+    Route::get("/verificar-token",[App\Http\Controllers\TrabajadorController::class,"verificarToken"]);
+
+});
+
+Route::get("/token-invalido",function() {
+    return ["msj" => "token invalido" , "estado" => false];
 });
 

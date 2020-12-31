@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Trabajador;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Facades\Validator;
-// use JWTAuth;
-// use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Hash;
 
 class TrabajadorController extends Controller {
 
@@ -245,17 +242,41 @@ class TrabajadorController extends Controller {
     }
 
     public function iniciarSesion(Request $req){
+        $trabajador= Trabajador::find($req["trabajador"]["cedula_trabajador"]);
+        if($trabajador!==null){
+            if(Hash::check($req["trabajador"]["clave"], $trabajador->clave)){
+                $nombreTrabajador=$trabajador->nombre_trabajador." ".$trabajador->apellido_1_trabajador." ".$trabajador->apellido_2_trabajador;
+                $Token=new AuthController($trabajador->cedula_trabajador,$nombreTrabajador,$trabajador->id_perfil,$trabajador->id_tipo_personal);
+                return [
+                    "msj" => "OK",
+                    "estado" => true,
+                    "token" => $Token->generarToken()
+                ];
+            }
+            else{
+                return [
+                    "msj" => "error al iniciar sesion",
+                    "estado" => false
+                ];
+            }
+
+        }
+        else{
+            return [
+                "msj" => "error al iniciar sesion el trabajador no ha sido encontrado o no exite en la base de datos",
+                "estado" => false
+            ];
+        }
 
     }
 
-    public function destruirSesion(Request $req){
+    public function verificarToken(Request $req){
+        $Token=new AuthController();
+        return ["token" => $Token->desencriptarToken($req["token"])];
 
     }
 
 
-    // public function login(){
-
-    // }
 
 
 }
