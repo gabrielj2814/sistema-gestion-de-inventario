@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Trabajador;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Hash;
+// use Illuminate\Support\Facades\Validator;
+// use JWTAuth;
+// use Tymon\JWTAuth\Exceptions\JWTException;
 
-class TrabajadorController extends Controller
-{
-    //
+class TrabajadorController extends Controller {
 
     public function registrar(Request $req){
 
@@ -247,9 +249,8 @@ class TrabajadorController extends Controller
     }
 
     public function destruirSesion(Request $req){
-        
-    }
 
+    }
 
 
     // public function login(){
