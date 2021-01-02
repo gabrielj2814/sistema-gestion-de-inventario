@@ -18,6 +18,7 @@
     height: 50%;
     width: 100%;
     padding-top: 20%;
+    cursor: pointer;
 }
 
 .item_menu_nvl_1:hover{
