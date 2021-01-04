@@ -6,12 +6,17 @@
     float: left;
 }
 
+.componentMenuDashboard_false{
+    display: none;
+}
+
 .item_menu_nvl_1{
     box-sizing: border-box;
     width: 100%;
     height: 10%;
     font-size: 13px;
     color:#fff;
+    position: relative;
 }
 
 .medidas_icon{
@@ -23,4 +28,29 @@
 
 .item_menu_nvl_1:hover{
     color: aqua;
+}
+
+.contendor_sub_items{
+    position: absolute;
+    box-sizing: border-box;
+    width: 282%;
+    height: 150%;
+    top: 0;
+    right: -298%;
+    background-color: #202129;
+    z-index: 100;
+    border-radius: 5px;
+     /* display: none; */
+}
+
+.arrow-left-menu{
+    position: absolute;
+    top: 32%;
+    right: -15%;
+    z-index: 100;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #202129;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    /* display: none; */
 }
