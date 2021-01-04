@@ -72,7 +72,16 @@ class MenuDashboard extends React.Component {
                         (
                             <>
                             <div className="arrow-left-menu"></div>
-                            <div className="contendor_sub_items"></div>  
+                            <div className="contendor_sub_items">
+                                <div className="item_sub_menu">Perfil</div>
+                                <div className="item_sub_menu">Trabajador</div>
+                                <div className="item_sub_menu">Tipo Personal</div>
+                                <div className="item_sub_menu">Tipo Articulo</div>
+                                <div className="item_sub_menu">Categoria</div>
+                                <div className="item_sub_menu">Empresa</div>
+                                <div className="item_sub_menu">Metodos de Pago</div>
+                                <div className="item_sub_menu">Cliente</div>
+                            </div>  
                             </>
                         )
                     }                  
@@ -86,7 +95,12 @@ class MenuDashboard extends React.Component {
                         (
                             <>
                             <div className="arrow-left-menu"></div>
-                            <div className="contendor_sub_items"></div>  
+                            <div className="contendor_sub_items">
+                                <div className="item_sub_menu">Producto</div>
+                                <div className="item_sub_menu">Inventario</div>
+                                <div className="item_sub_menu">Retiro</div>
+                                <div className="item_sub_menu">Asignar Precio</div>
+                            </div>  
                             </>
                         )
                     }     
@@ -101,7 +115,11 @@ class MenuDashboard extends React.Component {
                         (
                             <>
                             <div className="arrow-left-menu"></div>
-                            <div className="contendor_sub_items"></div>  
+                            <div className="contendor_sub_items">
+                                <div className="item_sub_menu">Ventas</div>
+                                <div className="item_sub_menu">Inventerio</div>
+                                <div className="item_sub_menu">Factura</div>
+                            </div>  
                             </>
                         )
                     }   
@@ -114,7 +132,9 @@ class MenuDashboard extends React.Component {
                         (
                             <>
                             <div className="arrow-left-menu"></div>
-                            <div className="contendor_sub_items"></div>  
+                            <div className="contendor_sub_items">
+                                <div className="item_sub_menu">Bitacora</div>
+                            </div>  
                             </>
                         )
                     }  
@@ -129,7 +149,10 @@ class MenuDashboard extends React.Component {
                         (
                             <>
                             <div className="arrow-left-menu"></div>
-                            <div className="contendor_sub_items"></div>  
+                            <div className="contendor_sub_items">
+                                <div className="item_sub_menu">Exportar datos</div>
+                                <div className="item_sub_menu">Importar Datos</div>
+                            </div>  
                             </>
                         )
                     }   

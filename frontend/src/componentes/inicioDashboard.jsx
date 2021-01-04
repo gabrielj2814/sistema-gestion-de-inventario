@@ -16,11 +16,16 @@ class InicioDashboard extends React.Component {
     }
 
     render(){
+        let modulo=(
+            <div>
+                <h1>inicio dashboard</h1>
+            </div>
+        )
+
         return (
 
             <div className="componenteInicioDashboard">
-                <Dashboard />
-            
+                <Dashboard component={modulo} />
             </div>
 
         )

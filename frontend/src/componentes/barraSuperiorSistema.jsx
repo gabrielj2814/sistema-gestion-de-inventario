@@ -6,9 +6,14 @@ class BarraSuperiorSistema extends React.Component {
 
     constructor(){
         super();
+        this.estadoMenuPerfil=this.estadoMenuPerfil.bind(this)
         this.state={
-
+            menuPerfil:false
         }
+    }
+    
+    estadoMenuPerfil(){
+        this.setState({menuPerfil:!this.state.menuPerfil})
     }
 
     render(){
@@ -20,7 +25,7 @@ class BarraSuperiorSistema extends React.Component {
                     </svg>
                 </div>
 
-                <div className="contenedor_vista_perfil">
+                <div className="contenedor_vista_perfil" onClick={this.estadoMenuPerfil}>
 
                     <div className="contenedor_foto"></div>
                     <div className="contenedor_nombre_user">nombre usuario</div>
@@ -29,9 +34,17 @@ class BarraSuperiorSistema extends React.Component {
                             <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
                         </svg>
                     </div>
-
-                    
-                
+                    {(this.state.menuPerfil===true) &&
+                        (
+                            <>
+                            <div className="arrow-bottom-menu"></div>
+                            <div className="contendor_sub_items_perfil">
+                                <div className="item_sub_menu">Perfil</div>
+                                <div className="item_sub_menu">Salir</div>
+                            </div>
+                            </>
+                        )
+                    }
                 </div>
             
             </div>
