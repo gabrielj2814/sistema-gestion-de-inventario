@@ -242,7 +242,7 @@ class TrabajadorController extends Controller {
     }
 
     public function iniciarSesion(Request $req){
-        $trabajador= Trabajador::find($req["trabajador"]["cedula_trabajador"]);
+        $trabajador= Trabajador::find($req["trabajador"]["cedula"]);
         if($trabajador!==null){
             if(Hash::check($req["trabajador"]["clave"], $trabajador->clave)){
                 $nombreTrabajador=$trabajador->nombre_trabajador." ".$trabajador->apellido_1_trabajador." ".$trabajador->apellido_2_trabajador;
@@ -267,6 +267,7 @@ class TrabajadorController extends Controller {
                 "estado" => false
             ];
         }
+        // return response($req,200);
 
     }
 
