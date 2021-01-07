@@ -22,12 +22,20 @@ class autenticacion
         if(isset($request["token"])){
             $AuthController=new AuthController();
             $token=$AuthController->desencriptarToken($request["token"]);
-            $request["estado_token"]=$token;
-            return $next($request);
+            if(!empty($token)){
+                if($this->validarVencimiento($token->fecha_vencimiento_toke)){
+                    $request["estado_token"]=$token;
+                    return $next($request);
+                }
+                else{
+                    return redirect("/token-invalido");
+                }
+            }
+            else{
+                return redirect("/token-invalido");
+            }
         }
         else{
-            // $request["estado_token"]=false;
-            // return $next($request);
             return redirect("/token-invalido");
         }
     }
@@ -39,13 +47,13 @@ class autenticacion
         $fechaActual= strtotime(date("Y-m-d",time()));
         $fecha_vencimiento=(int)$fechaVencimientoToken;
         if($fechaActual===$fecha_vencimiento){
-            echo true;
+            return true;
         }
         else if($fechaActual<$fecha_vencimiento){
-            echo true;
+            return true;
         }
         else{
-            echo false;
+            return false;
         }
         
     }

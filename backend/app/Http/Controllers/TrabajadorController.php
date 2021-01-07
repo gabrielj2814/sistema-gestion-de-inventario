@@ -245,7 +245,7 @@ class TrabajadorController extends Controller {
         $trabajador= Trabajador::find($req["trabajador"]["cedula"]);
         if($trabajador!==null){
             if(Hash::check($req["trabajador"]["clave"], $trabajador->clave)){
-                $nombreTrabajador=$trabajador->nombre_trabajador." ".$trabajador->apellido_1_trabajador." ".$trabajador->apellido_2_trabajador;
+                $nombreTrabajador=$trabajador->nombre_trabajador;
                 $Token=new AuthController($trabajador->cedula_trabajador,$nombreTrabajador,$trabajador->id_perfil,$trabajador->id_tipo_personal);
                 return [
                     "msj" => "OK",
@@ -267,13 +267,31 @@ class TrabajadorController extends Controller {
                 "estado" => false
             ];
         }
-        // return response($req,200);
+        // return $req;
 
     }
 
     public function verificarToken(Request $req){
-        $Token=new AuthController();
-        return ["token" => $Token->desencriptarToken($req["token"])];
+        if(isset($req["token"])){
+            $AuthController=new AuthController();
+            $token=$AuthController->desencriptarToken($req["token"]);
+            if(!empty($token)){
+                if($AuthController->validarVencimiento($token->fecha_vencimiento_token)){
+                    return ["token" => $token];
+                }
+                else{
+                    return ["token" => ["estado_token_vencimiento" => true,"motivo"=> "el token esta vencido"]];
+                }
+            }
+            else{
+                return ["token" => ["estado_token_vencimiento" => true,"motivo"=> "el token esta bacio"]];
+            }
+        }
+        else{
+            return ["token" => ["estado_token_vencimiento" => true,"motivo"=> " no existe el token"]];
+        }
+        // $Token=new AuthController();
+        // return ["token" => $Token->desencriptarToken($req["token"])];
 
     }
 

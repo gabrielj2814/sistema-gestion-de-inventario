@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use \Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Date;
@@ -21,13 +22,12 @@ class AuthController extends Controller
     }
 
     private function generarPayload(){
-        $fecha_vencimiento= date("Y-m-d");
         $payload = array(
             "id" => $this->cedula,
             "nombre" => $this->nombreUsuario,
             "perfil" => $this->perfil,
             "tipoPersonal" => $this->tipoPersonal,
-            "fecha_vencimiento_token"=> date("Y-m-d",strtotime($fecha_vencimiento." + 2 month"))
+            "fecha_vencimiento_token"=> strtotime(date("Y-m-d",time())." + 2 month")
         );
         return $payload;
     }
@@ -43,9 +43,29 @@ class AuthController extends Controller
     }
 
      public function desencriptarToken($token){
-        JWT::$leeway = 60; // $leeway in seconds
-        $decoded = JWT::decode($token, $this->keyJwt, array('HS256'));
-        return $decoded;
+        try{
+            JWT::$leeway = 60; // $leeway in seconds
+            $decoded = JWT::decode($token, $this->keyJwt, array('HS256'));
+            return $decoded;
+        }
+        catch(Exception $error){
+            return [];
+        }
+    }
+
+    public function validarVencimiento($fechaVencimientoToken){
+        $fechaActual= strtotime(date("Y-m-d",time()));
+        $fecha_vencimiento=(int)$fechaVencimientoToken;
+        if($fechaActual===$fecha_vencimiento){
+            return true;
+        }
+        else if($fechaActual<$fecha_vencimiento){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
     }
 
     

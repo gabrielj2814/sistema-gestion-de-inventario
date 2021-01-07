@@ -1,6 +1,8 @@
 import React from "react";
+import {withRouter} from "react-router-dom"
 // librerias JS
-import axios from "axios"
+// import axios from "axios"
+import $ from "jquery"
 // css
 import "../css/login.css"
 // imagenes login
@@ -29,13 +31,21 @@ class Login extends React.Component {
             }
         }
     }
+    // json
 
     cambiarEstado(a){
         let input = a.target
         this.setState({[input.name]:input.value})
     }
+    componentWillMount(){
+        this.cerrarAlerta()
+        if(this.props.match.params.mensaje){
+            const {alerta} = JSON.parse(this.props.match.params.mensaje)
+            this.abrirAlerta(alerta.mensaje,alerta.color)
+        }
+    }
 
-    async iniciarSesion(){
+    iniciarSesion(){
         this.cerrarAlerta()
         let estadoCedula=this.validarCedula();
         let estadoClave=this.validarClave();
@@ -46,20 +56,35 @@ class Login extends React.Component {
             let datos={
                 trabajador:formDataParse
             }
-            console.log(datos)
-            setTimeout(() => {
-                document.querySelector(".contendorFlexGif").style.display="none"
-            },10000)
-            // await axios.get("http://127.0.0.1:8000/login/iniciar",datos)
-            // .then(respuesta => {
-            //     let json=JSON.parse(respuesta.data)
-            //     console.log(json)
-           
-            // })
-            // .catch(error => {
-            //     document.querySelector(".contendorFlexGif").style.display="none"
-            //     this.abrirAlerta("Error al conectar con el servidor ,por favor verfique su conexion a internet","danger")
-            // })
+            $.ajax({
+                url:"http://127.0.0.1:8000/login/iniciar",
+                data:datos,
+                type:"GET",
+                dataType:"json",
+                success:(respuesta) => {
+                    // alert("funciono")
+                    document.querySelector(".contendorFlexGif").style.display="none"
+                    let json=JSON.parse(JSON.stringify(respuesta))
+                    // console.log(json)
+                    if(json.estado===true){
+                        localStorage.setItem("token",json.token)
+                        console.log(localStorage.getItem("token"))
+                        this.props.history.push("/dashboard/inicio");
+                    }
+                    else{
+                        localStorage.setItem("token","")
+                        this.abrirAlerta(json.msj,"danger");
+                    }
+                    // setTimeout(() => {
+                    //     document.querySelector(".contendorFlexGif").style.display="none"
+                    // },7000)
+                    
+                },
+                error: () => {
+                    document.querySelector(".contendorFlexGif").style.display="none"
+                    this.abrirAlerta("Error al conectar con el servidor ,por favor verfique su conexion a internet","danger")
+                }
+            })
             
         }
     }
@@ -209,4 +234,4 @@ class Login extends React.Component {
 
 }
 
-export default Login
+export default withRouter(Login)
