@@ -73,6 +73,6 @@ Route::group(["prefix" => "/login"], function(){
 });
 
 Route::get("/token-invalido",function() {
-    return ["msj" => "token invalido" , "estado" => false];
+    return ["estado_token_vencimiento" => true, "mensaje" => "token vencido o invalido"];
 });
 
