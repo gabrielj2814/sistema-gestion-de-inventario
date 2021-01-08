@@ -1,0 +1,136 @@
+:root{
+    --color-de-fondo-registro:#1c1d23;
+    --color-de-fondo-registro-2:#16151a;
+    --color-paso-activo:#10b467;
+    --color-paso-inactivo:#16151a;
+}
+
+.contendorRegistro{
+    background-color: var(--color-de-fondo-registro);
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.contenedorPasosIndicador{
+    box-sizing: border-box;
+    width: 100%;
+    height: 80px;
+    /* border: 1px solid #111; */
+    margin-bottom: 55px;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.contadorPasos{
+    width: 80px;
+    height: 80px;
+    /* border: 1px solid #111; */
+    border-radius: 40px;
+    line-height: 80px;
+    color: #fff;
+    text-align: center;
+    font-size: 50px;
+
+}
+
+.contadorPasosCentral{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.contadorPasosActivo{
+    background-color:var(--color-paso-activo);
+}
+
+.contadorPasosInactivo{
+    background-color:var(--color-paso-inactivo);
+}
+
+.contendorFormRegistro{
+    background-color: var(--color-de-fondo-registro-2);
+    box-sizing: border-box;
+    width: 30%;
+    /* height: 410px; */
+    height: auto;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.paso1{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.tituloPaso1{
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.inputRegistro{
+    box-sizing: border-box;
+    width: 255px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    color: rgb(214, 179, 21);
+    border: 1px solid  rgb(214, 179, 21);
+    border-radius: 5px;
+    outline: none;
+    background-color:var(--color-de-fondo-registro-2);
+    font-size: 15px;
+    padding-left: 5px;
+}
+
+.mensajeRegistro{
+    box-sizing: border-box;
+    display: block;
+    width: 255px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom:10px;
+    color: rgb(230, 16, 16);
+    display: none;
+}
+
+.contenedorBotonesPaso1{
+    box-sizing: border-box;
+    width: 50%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    /* border: 1px solid aqua; */
+    margin-top: 50px;
+}
+
+.botonInicioSoguiente{
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #198754;
+    color: #fff;
+}
+
+.paso2{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: none;
+}

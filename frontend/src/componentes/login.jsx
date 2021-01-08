@@ -1,5 +1,5 @@
 import React from "react";
-import {withRouter} from "react-router-dom"
+import {Link,withRouter} from "react-router-dom"
 // librerias JS
 // import axios from "axios"
 import $ from "jquery"
@@ -210,11 +210,10 @@ class Login extends React.Component {
                     </form>
 
                     <div className="contendorLink">
-
-                    <a href="#" className="linkCustom link-left">Recuperar Cuenta</a>
-                    <a href="#" className="linkCustom link-right">Registrase</a>
                     
-                    
+                        <Link to="/recuperar/cuenta" className="linkCustom link-left">Recuperar Cuenta</Link>
+                        <Link to="/registrar/cuenta" className="linkCustom link-right">Registrase</Link>
+                                        
                     </div>
 
                 </div>
@@ -233,5 +232,7 @@ class Login extends React.Component {
     }
 
 }
+
+// <a href="#" className="linkCustom link-right">Registrase</a>
 
 export default withRouter(Login)
