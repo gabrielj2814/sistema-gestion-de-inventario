@@ -10,7 +10,8 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    padding-top: 20px;
+    /* padding-top: 20px; */
+    /* position: relative; */
 }
 
 .contenedorPasosIndicador{
@@ -18,12 +19,13 @@
     width: 100%;
     height: 80px;
     /* border: 1px solid #111; */
-    margin-bottom: 55px;
+    margin-bottom: 30px;
     display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
 }
 
 .contadorPasos{
@@ -93,6 +95,10 @@
     padding-left: 5px;
 }
 
+.inputRegistroMargenTop30{
+    margin-top: 30px;
+}
+
 .mensajeRegistro{
     box-sizing: border-box;
     display: block;
@@ -115,7 +121,7 @@
     margin-top: 50px;
 }
 
-.botonInicioSoguiente{
+.botonInicioSiguiente{
     box-sizing: border-box;
     width: 100%;
     height: 40px;
@@ -126,6 +132,30 @@
     color: #fff;
 }
 
+.botonPasoSiguiente{
+    box-sizing: border-box;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #198754;
+    color: #fff;
+
+}
+.botonPasoAtras{
+    box-sizing: border-box;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.ancho30{
+    width: 40%;
+}
+
 .paso2{
     box-sizing: border-box;
     width: 100%;
@@ -133,4 +163,99 @@
     padding-top: 15px;
     padding-bottom: 15px;
     display: none;
+}
+
+.tituloPaso2,.tituloPaso3{
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.selectInputMarginBottom{
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.contenedorTituloPregunta{
+    box-sizing: border-box;
+    width: 255px;
+    height: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.contenedorBotonesPaso{
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.paso3{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: none;
+}
+
+.contendorFlexGifRegistro{
+    box-sizing: border-box;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: none;
+    /* display: inline-flex; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    z-index: 400;
+    background-color: rgba(38, 40, 48, 0.616);
+}
+
+.contedorGifCargaRegistro{
+    box-sizing: border-box;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    z-index: 100;
+    overflow: hidden;
+    position: relative;
+}
+
+.gifCargaRegistro{
+    box-sizing: border-box;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: -100px;
+    left: -100px;
+}
+
+.contendorArrowGoBack{
+    box-sizing: border-box;
+    position: absolute;   
+    color:#fff;
+    width: 40px;
+    height: 40px;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
+}
+
+.iconArrowGoBack{
+    width: 100%;
+    height: 100%;
 }

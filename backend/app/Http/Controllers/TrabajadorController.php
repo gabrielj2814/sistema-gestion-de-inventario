@@ -183,30 +183,48 @@ class TrabajadorController extends Controller {
     public function activarCuenta(Request $req){
         $trabajador= Trabajador::find($req["trabajador"]["cedula_trabajador"]);
         if($trabajador!==null){
-            $trabajador->pregunta_1=$req["trabajador"]["pregunta_1"];
-            $trabajador->pregunta_2=$req["trabajador"]["pregunta_2"];
-            $trabajador->respuesta_1=$req["trabajador"]["respuesta_1"];
-            $trabajador->respuesta_2=$req["trabajador"]["respuesta_2"];
-            $trabajador->clave= bcrypt($req["trabajador"]["clave"]);
-            if($trabajador->save()){
-
-                return [
-                    "msj" => "registro completado",
-                    "estado" => true
-                ];
-
+            if($trabajador->estado_trabajador===1){
+                if($trabajador->clave===""){
+                    $trabajador->pregunta_1=$req["trabajador"]["pregunta_1"];
+                    $trabajador->pregunta_2=$req["trabajador"]["pregunta_2"];
+                    $trabajador->respuesta_1=$req["trabajador"]["respuesta_1"];
+                    $trabajador->respuesta_2=$req["trabajador"]["respuesta_2"];
+                    $trabajador->clave= bcrypt($req["trabajador"]["clave"]);
+                    if($trabajador->save()){
+    
+                        return [
+                            "msj" => "registro completado",
+                            "estado" => true
+                        ];
+    
+                    }
+                    else{
+                        return [
+                            "msj" => "Error al activar la cuenta",
+                            "estado" => false
+                        ];
+                    }
+                }
+                else{
+                    return [
+                        "msj" => "Error al activar la cuenta el trabajador ya tiene su cuenta activa",
+                        "estado" => false
+                    ];
+                }
             }
             else{
+
                 return [
-                    "msj" => "error al registrar el trabajador",
+                    "msj" => "Error al activar la cuenta, el trabajador ya no esta activo",
                     "estado" => false
                 ];
+
             }
 
         }
         else{
             return [
-                "msj" => "error al registrar, no fue encontrado el trabajador",
+                "msj" => "Error al activar la cuenta, no fue encontrado el trabajador",
                 "estado" => false
             ];
         }
